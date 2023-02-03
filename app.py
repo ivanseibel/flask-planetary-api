@@ -65,6 +65,8 @@ def db_seed():
   db.session.add(test_user)
   db.session.commit()
 
+  print('Database seeded')
+
     
 from routes import *
 from models import *
