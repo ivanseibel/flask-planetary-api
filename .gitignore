@@ -263,3 +263,6 @@ poetry.toml
 
 # Ignore git scripts
 push_to_all_remotes.sh
+
+# Ignore SQLite database
+planets.db
