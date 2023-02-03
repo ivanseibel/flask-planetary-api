@@ -8,6 +8,7 @@ def hello_world():
     return jsonify({'message': 'Please provide a name'})
   return jsonify({'message': f'Hello {name}'})
 
+
 @app.route('/parameters')
 def parameters():
   age = int(request.args.get('age'))
@@ -19,6 +20,7 @@ def parameters():
   return ({
     'message': f'Welcome {name}, you are old enough to view this page'
   })
+
 
 @app.route('/url_variables/<string:name>/<int:age>')
 def url_variables(name: str, age: int):
