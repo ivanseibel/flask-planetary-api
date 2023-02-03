@@ -30,5 +30,17 @@ def parameters():
   })
 
 
+@app.route('/url_variables/<string:name>/<int:age>')
+def url_variables(name: str, age: int):
+  if age < 18:
+    return ({
+      'message': f'Sorry {name}, you are not old enough to view this page'
+    }), 401
+
+  return ({
+    'message': f'Welcome {name}, you are old enough to view this page'
+  })
+
+
 if __name__ == '__main__':
   app.run()
