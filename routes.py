@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, request
 from app import app
+from models import *
+
 
 @app.route('/')
 def hello_world():
