@@ -63,7 +63,8 @@ def db_seed():
   )
 
   db.session.add(test_user)
-  
+  db.session.commit()
+
     
 from routes import *
 from models import *
