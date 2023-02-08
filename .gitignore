@@ -261,8 +261,9 @@ poetry.toml
 # VSCode files
 .vscode/
 
-# Ignore git scripts
+# Ignore shell scripts
 push_to_all_remotes.sh
+run.sh
 
 # Ignore SQLite database
 planets.db
