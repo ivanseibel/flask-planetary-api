@@ -3,6 +3,7 @@ from flask import Flask
 import os
 from flask_marshmallow import Marshmallow
 from flask_jwt_extended import JWTManager
+from flask_mail import Mail
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -21,6 +22,7 @@ app.config['MAIL_USE_SSL'] = False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 jwt = JWTManager(app)
+mail = Mail(app)
 
 
 @app.cli.command('db_create')
