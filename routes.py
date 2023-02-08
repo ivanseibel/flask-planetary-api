@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request
-from app import app
+from app import app, mail
 from models import *
 from flask_jwt_extended import create_access_token
+from flask_mail import Message
 
 @app.route('/')
 def hello_world():
@@ -80,10 +81,26 @@ def login():
     email = request.form['email']
     password = request.form['password']
 
-  found_user = User.query.filter_by(email=email, password=password).first()
+  user = User.query.filter_by(email=email, password=password).first()
 
-  if found_user:
+  if user:
     access_token = create_access_token(identity=email)
     return jsonify({'message': 'Login successful', 'access_token': access_token})
   else:
     return jsonify({'message': 'Bad email or password'}), 401
+
+
+@app.route('/retrieve_password/<string:email>', methods=['GET'])
+def retrieve_password(email: str):
+  user = User.query.filter_by(email=email).first()
+
+  if user:
+    msg = Message(
+      'Your planetary API password is ' + user.password,
+      sender="admin@planetary-api.com",
+      recipients=[email]
+    )
+    mail.send(msg)
+    return jsonify({'message': 'Password sent to ' + email})
+  else:
+    return jsonify({'message': 'Email does not exist'}), 401
