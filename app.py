@@ -2,7 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 import os
 from flask_marshmallow import Marshmallow
-from flask_jwt_extended import JWTManager
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -10,11 +9,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'planets.db')
-app.config['JWT_SECRET_KEY'] = 'super-secret' # Change this!
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
-jwt = JWTManager(app)
 
 
 @app.cli.command('db_create')
