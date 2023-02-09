@@ -104,3 +104,15 @@ def retrieve_password(email: str):
     return jsonify({'message': 'Password sent to ' + email})
   else:
     return jsonify({'message': 'Email does not exist'}), 401
+
+
+# Retrieving a single planet's details
+@app.route('/planets/<int:planet_id>', methods=['GET'])
+def planet_details(planet_id: int):
+  planet = Planet.query.filter_by(planet_id=planet_id).first()
+
+  if planet:
+    result = planet_schema.dump(planet)
+    return jsonify(result)
+  else:
+    return jsonify({'message': 'Planet does not exist'}), 404
