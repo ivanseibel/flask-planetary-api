@@ -262,7 +262,6 @@ poetry.toml
 .vscode/
 
 # Ignore shell scripts
-push_to_all_remotes.sh
 run.sh
 
 # Ignore SQLite database
