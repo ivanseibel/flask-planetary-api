@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from app import app, mail
 from models import *
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required
 from flask_mail import Message
 
 @app.route('/')
@@ -119,6 +119,7 @@ def planet_details(planet_id: int):
 
 # Adding planets with POST method
 @app.route('/planets', methods=['POST'])
+@jwt_required()
 def add_planet():
   planet_name = request.form['planet_name']
   test = Planet.query.filter_by(planet_name=planet_name).first()
